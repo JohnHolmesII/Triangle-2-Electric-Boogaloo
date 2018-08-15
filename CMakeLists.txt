@@ -1,19 +1,37 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.11.4)
 project(Triangle_2__Electric_Boogaloo C)
 
 set(CMAKE_C_FLAGS "-Wall -std=c11")
 set(3RDPARTY ${PROJECT_SOURCE_DIR}/3rdparty)
-set(GLFW "${3RDPARTY}/glfw/include/glfw3.h")
-
-configure_file ("${PROJECT_SOURCE_DIR}/src/config.h.in" "${PROJECT_SOURCE_DIR}/src/config.h")
 
 include_directories("${PROJECT_SOURCE_DIR}")
-include_directories("$ENV{VULKAN_SDK}/Include/")
 
-link_directories("$ENV{VULKAN_SDK}/Lib/")
-link_directories("${3RDPARTY}/glfw/lib/")
+# Find dependencies
 
-link_libraries("vulkan-1.lib")
-link_libraries("glfw3.dll")
+find_package(PkgConfig)
+
+
+if (PKGCONFIG_FOUND AND UNIX)
+    pkg_search_module(GLFW REQUIRED glfw3)
+    if (GLFW_FOUND)
+        # Try to use the system GLFW headers
+        include_directories("/usr/include/GLFW/")
+        link_libraries(${GLFW_LIBRARIES})
+    endif()
+elseif (WIN32)
+    link_directories("${3RDPARTY}/glfw/lib/")
+    link_libraries("glfw3.dll")
+endif()
+include_directories("${3RDPARTY}/glfw/include/")
+
+find_package(Vulkan)
+if (VULKAN_FOUND)
+    include_directories(${Vulkan_INCLUDE_DIRS})
+    link_libraries(${Vulkan_LIBRARIES})
+elseif(WIN32)
+    include_directories("$ENV{VULKAN_SDK}/Include/")
+    link_directories("$ENV{VULKAN_SDK}/Lib/")
+    link_libraries("vulkan-1.lib")
+endif()
 
 add_executable(Triangle_2__Electric_Boogaloo src/main.c src/types.h src/config.h)
