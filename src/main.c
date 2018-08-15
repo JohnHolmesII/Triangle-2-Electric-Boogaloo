@@ -1,11 +1,13 @@
 #define GLFW_INCLUDE_VULKAN
 
-#include <C:\Users\God\Programs\Triangle 2, Electric Boogaloo\glfw\include\glfw3.h>
-#include <vulkan/vulkan.h>
+#include "src/config.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include "types.h"
+#include "vulkan/vulkan.h"
+#include GLFW
 
 #ifdef NDEBUG
 const int enableValidationLayers = 0;
@@ -25,12 +27,11 @@ bln initWindow()
 		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 		window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", NULL, NULL);
 
-		if (!window) return error;
+		if (!window) return CELL_FIRE;
 	}
 	else
 	{
-
-		return error;
+		return CELL_FIRE;
 	}
 
 	return CELL_OK;
@@ -49,24 +50,18 @@ void mainLoop()
 	}
 }
 
-bln run()
+void cleanup()
 {
-	bln status = CELL_OK;
 
-	status = initWindow();
-	initVulkan();
-	mainLoop();
-	//cleanup();
-
-	return status;
 }
 
 int main()
 {
-	if (run() != CELL_OK)
-	{
-		return error;
-	}
+	if (initWindow() != CELL_OK) return CELL_FIRE;
+	if (initVulkan() != CELL_OK) return CELL_FIRE;
+
+	mainLoop();
+	cleanup();
 
 	return CELL_OK;
 }
