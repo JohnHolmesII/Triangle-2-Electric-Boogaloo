@@ -5,6 +5,8 @@
 
 #define true  (1)
 #define false (0)
+#define error (bln) (-1)
+#define CELL_OK (bln) (0)
 
 typedef uint8_t  bln;
 typedef uint16_t u16;

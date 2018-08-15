@@ -1,7 +1,7 @@
 #define GLFW_INCLUDE_VULKAN
 
 #include <C:\Users\God\Programs\Triangle 2, Electric Boogaloo\glfw\include\glfw3.h>
-//#include <vulkan/vulkan.h>
+#include <vulkan/vulkan.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -18,12 +18,27 @@ const u16 HEIGHT = 600;
 
 GLFWwindow* window;
 
-void initWindow()
+bln initWindow()
 {
-	glfwInit();
-	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+	if (glfwInit())
+	{
+		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+		window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", NULL, NULL);
 
-	window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", NULL, NULL);
+		if (!window) return error;
+	}
+	else
+	{
+
+		return error;
+	}
+
+	return CELL_OK;
+}
+
+bln initVulkan()
+{
+	return CELL_OK;
 }
 
 void mainLoop()
@@ -32,24 +47,26 @@ void mainLoop()
 	{
 		glfwPollEvents();
 	}
-
 }
 
 bln run()
 {
-	initWindow();
-	//initVulkan();
-	//mainLoop();
+	bln status = CELL_OK;
+
+	status = initWindow();
+	initVulkan();
+	mainLoop();
 	//cleanup();
-	return 0;
+
+	return status;
 }
 
 int main()
 {
-	if (run() != 0)
+	if (run() != CELL_OK)
 	{
-		return -1;
+		return error;
 	}
 
-	return 0;
+	return CELL_OK;
 }
