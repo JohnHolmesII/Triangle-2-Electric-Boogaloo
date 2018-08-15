@@ -1,7 +1,5 @@
 #define GLFW_INCLUDE_VULKAN
 
-#include "src/config.h"
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
