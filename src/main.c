@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include "types.h"
 #include "vulkan/vulkan.h"
-#include GLFW
+#include "glfw3.h"
 
 #ifdef NDEBUG
 const int enableValidationLayers = 0;
