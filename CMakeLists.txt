@@ -32,4 +32,4 @@ elseif(WIN32)
     link_libraries("vulkan-1.lib")
 endif()
 
-add_executable(Triangle_2__Electric_Boogaloo src/main.c src/vulkan src/vulkanFunctions.h src/types.h)
+add_executable(T2EB src/main.c src/vulkan src/vulkanFunctions.h src/types.h)
