@@ -45,12 +45,4 @@ fabric.properties
 # Editor-based Rest Client
 **/.idea/httpRequests
 
-*.obj
-*.exe
-*.a
-in*
-out*
-*.py
-*.sh
-*.o
-
+build/
