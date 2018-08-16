@@ -6,10 +6,7 @@ set(3RDPARTY ${PROJECT_SOURCE_DIR}/3rdparty)
 
 include_directories("${PROJECT_SOURCE_DIR}")
 
-# Find dependencies
-
-find_package(PkgConfig)
-
+find_package(PkgConfig) # Find dependencies
 
 if (PKGCONFIG_FOUND AND UNIX)
     pkg_search_module(GLFW REQUIRED glfw3)
@@ -22,6 +19,7 @@ elseif (WIN32)
     link_directories("${3RDPARTY}/glfw/lib/")
     link_libraries("glfw3.dll")
 endif()
+
 include_directories("${3RDPARTY}/glfw/include/")
 
 find_package(Vulkan)
@@ -34,4 +32,4 @@ elseif(WIN32)
     link_libraries("vulkan-1.lib")
 endif()
 
-add_executable(Triangle_2__Electric_Boogaloo src/main.c src/types.h src/config.h)
+add_executable(Triangle_2__Electric_Boogaloo src/main.c src/vulkan src/vulkanFunctions.h src/types.h)
