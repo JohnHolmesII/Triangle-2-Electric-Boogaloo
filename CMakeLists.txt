@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.11.4)
+cmake_minimum_required(VERSION 3.10)
 project(Triangle_2__Electric_Boogaloo C)
 
 set(CMAKE_C_FLAGS "-Wall -std=c11")

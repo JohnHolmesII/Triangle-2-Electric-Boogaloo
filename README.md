@@ -4,7 +4,7 @@ Triangle 2, Electric Boogaloo
 ## Dependencies
 
 ### Windows
-* [Cmake 3.11.4+](https://www.cmake.org/download/)
+* [Cmake 3.10+](https://www.cmake.org/download/)
 * [Vulkan SDK](https://vulkan.lunarg.com/sdk/home) (See "Install the SDK" [here](https://vulkan.lunarg.com/doc/sdk/latest/windows/getting_started.html))
 http://www.glfw.org/docs/latest/compile.html
 
