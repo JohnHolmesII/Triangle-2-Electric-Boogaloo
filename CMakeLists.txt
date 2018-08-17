@@ -16,11 +16,11 @@ if (PKGCONFIG_FOUND AND UNIX)
         link_libraries(${GLFW_LIBRARIES})
     endif()
 elseif (WIN32)
-    link_directories("${3RDPARTY}/glfw/lib/")
+    link_directories("${3RDPARTY}/glfw/src/")
     link_libraries("glfw3.dll")
 endif()
 
-include_directories("${3RDPARTY}/glfw/include/")
+include_directories("${3RDPARTY}/glfw/include/GLFW/")
 
 find_package(Vulkan)
 if (VULKAN_FOUND)
