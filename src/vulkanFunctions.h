@@ -4,7 +4,8 @@
 #include "vulkan/vulkan.h"
 #include "types.h"
 
-bln         createInstance(VkInstance);
+byt          createInstance(VkInstance);
 const char** getRequiredExtensions(u32*);
+byt          checkValidationLayerSupport();
 
 #endif //TRIANGLE_2_ELECTRIC_BOOGALOO_VULKANFUNCTIONS_H

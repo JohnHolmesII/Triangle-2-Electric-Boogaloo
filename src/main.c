@@ -13,13 +13,13 @@ const int enableValidationLayers = 0;
 const int enableValidationLayers = 1;
 #endif
 
-const u16 WIDTH  = 800;
-const u16 HEIGHT = 600;
+const u16   WIDTH            = 800;
+const u16   HEIGHT           = 600;
 
 GLFWwindow* window;
 VkInstance  instance;
 
-bln initWindow()
+byt initWindow()
 {
 	if (glfwInit())
 	{
@@ -36,7 +36,7 @@ bln initWindow()
 	return CELL_OK;
 }
 
-bln initVulkan()
+byt initVulkan()
 {
 	if (createInstance(instance) != CELL_OK) return CELL_FIRE;
 
@@ -62,6 +62,7 @@ int main()
 {
 	printf("Initializing glfw window manager\n");
 	if (initWindow() != CELL_OK) return CELL_FIRE;
+
 	printf("Initializing vulkan\n");
 	if (initVulkan() != CELL_OK) return CELL_FIRE;
 

@@ -3,10 +3,10 @@
 
 #include <stdint.h>
 
-#define true  (1)
-#define false (0)
-#define CELL_FIRE (bln) (-1)
-#define CELL_OK (bln) (0)
+#define true      ((bln) 1)
+#define false     ((bln) 0)
+#define CELL_FIRE (byt) (-1)
+#define CELL_OK   (byt) (0)
 
 typedef uint8_t  bln; // A boolean
 typedef uint16_t u16;
