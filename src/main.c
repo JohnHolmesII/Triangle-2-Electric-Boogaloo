@@ -1,8 +1,7 @@
 #define GLFW_INCLUDE_VULKAN
 
-#include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
+#include "utils.h"
 #include "types.h"
 #include "glfw3.h"
 #include "vulkanFunctions.h"
@@ -13,8 +12,8 @@ const int enableValidationLayers = 0;
 const int enableValidationLayers = 1;
 #endif
 
-const u16   WIDTH            = 800;
-const u16   HEIGHT           = 600;
+const u16   WIDTH  = 800;
+const u16   HEIGHT = 600;
 
 GLFWwindow* window;
 VkInstance  instance;

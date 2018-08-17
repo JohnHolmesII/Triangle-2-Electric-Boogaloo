@@ -9,7 +9,10 @@ const char* validationLayers = {"VK_LAYER_LUNARG_standard_validation"};
 
 byt    createInstance(VkInstance instance)
 {
-	if (checkValidationLayerSupport() != CELL_OK) return CELL_FIRE;
+	if (checkValidationLayerSupport() != CELL_OK)
+	{
+		return CELL_FIRE;
+	}
 
 	u32                  numExtensions;
 	VkApplicationInfo    appInfo    = {};
