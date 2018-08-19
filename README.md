@@ -1,6 +1,8 @@
 Triangle 2, Electric Boogaloo
 =====
 
+[![Build status](https://ci.appveyor.com/api/projects/status/r7koaqho74vf179p?svg=true)](https://ci.appveyor.com/project/JohnHolmesII/triangle-2-electric-boogaloo)
+
 ## Dependencies
 
 ### Windows
