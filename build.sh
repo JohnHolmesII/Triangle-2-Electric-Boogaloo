@@ -6,11 +6,21 @@ else
 	mkdir build
 fi
 
-cd 3rdparty/glfw/
-cmake -G "MSYS Makefiles" -DBUILD_SHARED_LIBS=ON -DLIB_SUFFIX=64 -DGLFW_BUILD_EXAMPLES=OFF -DGLFW_BUILD_TESTS=OFF -DGLFW_BUILD_DOCS=OFF GLFW_VULKAN_STATIC=OFF . &&
-make glfw && cp -f src/glfw3.dll ../../build/;
+cd build
 
-cd ../../build;
-cmake -G "MSYS Makefiles" ../ && make;
+CMAKEGENERATOR="Unix Makefiles"
+if [ -n "$MSYSTEM" ]; then
+	CMAKEGENERATOR="MSYS Makefiles"
+elif command -v ninja >/dev/null; then
+	CMAKEGENERATOR="Ninja"
+fi
 
-rm -rf CMakeFiles cmake_install.cmake CMakeCache.txt Makefile;
+cmake -G "$CMAKEGENERATOR" ../
+
+if [ "$CMAKEGENERATOR" = "Ninja" ]; then
+	ninja
+else
+	make
+fi
+
+rm -rf CMakeFiles cmake_install.cmake CMakeCache.txt Makefile

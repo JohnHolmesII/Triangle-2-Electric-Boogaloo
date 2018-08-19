@@ -1,24 +1,13 @@
 cmake_minimum_required(VERSION 3.10)
-project(Triangle_2__Electric_Boogaloo C)
+project(T2EB C)
 
 set(CMAKE_C_FLAGS "-Wall -std=c11")
 set(3RDPARTY ${PROJECT_SOURCE_DIR}/3rdparty)
 
 include_directories("${PROJECT_SOURCE_DIR}")
 
-find_package(PkgConfig) # Find dependencies
-
-if (PKGCONFIG_FOUND AND UNIX)
-    pkg_search_module(GLFW REQUIRED glfw3)
-    if (GLFW_FOUND)
-        # Try to use the system GLFW headers
-        include_directories("/usr/include/GLFW/")
-        link_libraries(${GLFW_LIBRARIES})
-    endif()
-elseif (WIN32)
-    link_directories("${3RDPARTY}/glfw/src/")
-    link_libraries("glfw3.dll")
-endif()
+add_subdirectory(3rdparty/glfw EXCLUDE_FROM_ALL)
+link_libraries(glfw)
 
 include_directories("${3RDPARTY}/glfw/include/GLFW/")
 
