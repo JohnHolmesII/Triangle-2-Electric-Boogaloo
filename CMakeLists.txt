@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.5.1)
 project(T2EB C)
 
 set(CMAKE_C_FLAGS "-Wall -std=c11")
