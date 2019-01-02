@@ -1,26 +1,45 @@
-if [ -d build ]
-then
-	rm -rf build/
-	mkdir build
-else
-	mkdir build
-fi
+config()
+{
+	
+	if [ "$MSYSTEM" = "MSYS" ]; then
+		CMAKEGENERATOR="MSYS Makefiles"
+	elif command -v ninja >/dev/null; then
+		CMAKEGENERATOR="Ninja"
+	else
+		CMAKEGENERATOR="Unix Makefiles"
+	fi
 
-cd build
+	cmake -G "$CMAKEGENERATOR" ../
+}
 
-CMAKEGENERATOR="Unix Makefiles"
-if [ -n "$MSYSTEM" ]; then
-	CMAKEGENERATOR="MSYS Makefiles"
-elif command -v ninja >/dev/null; then
-	CMAKEGENERATOR="Ninja"
-fi
+buildProj()
+{
+	if [ "$CMAKEGENERATOR" = "Ninja" ]; then
+		ninja -j$(nproc)
+	else
+		make
+	fi
+}
 
-cmake -G "$CMAKEGENERATOR" ../
+clean()
+{
+	cp T2EB ../T2EB
+	cd ..
+	rm -r build/
+}
 
-if [ "$CMAKEGENERATOR" = "Ninja" ]; then
-	ninja
-else
-	make
-fi
+main()
+{
+	if [ -d build ]; then
+		rm -rf build/
+	fi
 
-rm -rf CMakeFiles cmake_install.cmake CMakeCache.txt Makefile
+	mkdir build && cd build
+	
+	config
+	buildProj
+	clean
+}
+
+main
+
