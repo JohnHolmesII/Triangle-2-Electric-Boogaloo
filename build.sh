@@ -1,3 +1,11 @@
+msg='[unknown]'
+
+die()
+{
+	printf "Build failed during %s" "$msg"
+	exit 1
+}
+
 config()
 {
 	
@@ -9,15 +17,31 @@ config()
 		CMAKEGENERATOR="Unix Makefiles"
 	fi
 
-	cmake -G "$CMAKEGENERATOR" ../
+	cmake -G $CMAKEGENERATOR ../
+
+	if [ $? != 0 ]; then
+		printf "[%d]" $?
+		msg="configuration, cmake error."
+		die
+	fi
 }
 
 buildProj()
 {
 	if [ "$CMAKEGENERATOR" = "Ninja" ]; then
-		ninja -j$(nproc)
+		ninja
+
+		if [ $? != 0 ]; then
+			msg='main T2EB build, Ninja error.'
+			die
+		fi
 	else
-		make
+		make -j$(nproc)
+
+		if [ $? != 0 ]; then
+			msg='main T2EB build, make error.'
+			die
+		fi
 	fi
 }
 
