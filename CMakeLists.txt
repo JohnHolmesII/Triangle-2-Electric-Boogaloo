@@ -21,4 +21,4 @@ elseif(WIN32)
     link_libraries("vulkan-1.lib")
 endif()
 
-add_executable(T2EB src/main.c src/vulkan src/types.h src/utils.c src/utils.h)
+add_executable(T2EB src/main.c src/types.h src/utils.c src/utils.h)
