@@ -17,7 +17,7 @@ config()
 		CMAKEGENERATOR="Unix Makefiles"
 	fi
 
-	cmake -G $CMAKEGENERATOR ../
+	cmake -G "$CMAKEGENERATOR" ../
 
 	if [ $? != 0 ]; then
 		printf "[%d]" $?
