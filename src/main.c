@@ -1,78 +1,36 @@
 #define GLFW_INCLUDE_VULKAN
+#include <GLFW/glfw3.h>
 
-#include <string.h>
-#include "utils.h"
-#include "types.h"
-#include "glfw3.h"
-#include "vulkanFunctions.h"
+#define GLM_FORCE_RADIANS
+#define GLM_FORCE_DEPTH_ZERO_TO_ONE
+#include <glm/vec4.hpp>
+#include <glm/mat4x4.hpp>
 
-#ifdef NDEBUG
-const int enableValidationLayers = 0;
-#else
-const int enableValidationLayers = 1;
-#endif
-
-const u16 WIDTH  = 800;
-const u16 HEIGHT = 600;
-
-GLFWwindow*              window;
-VkInstance               instance;
-VkDebugUtilsMessengerEXT callback;
-
-
-byt initWindow()
-{
-	if (glfwInit())
-	{
-		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-		window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", NULL, NULL);
-
-		if (!window) return CELL_FIRE;
-	}
-	else
-	{
-		return CELL_FIRE;
-	}
-
-	return CELL_OK;
-}
-
-byt initVulkan()
-{
-	if (createInstance(instance) != CELL_OK) return CELL_FIRE;
-	if (setupDebugCallback(callback, instance) != CELL_OK) return CELL_FIRE;
-
-	return CELL_OK;
-}
-
-void mainLoop()
-{
-	while (!glfwWindowShouldClose(window))
-	{
-		glfwPollEvents();
-	}
-}
-
-void cleanup()
-{
-	vkDestroyInstance(instance, NULL);
-	glfwDestroyWindow(window);
-	glfwTerminate();
-}
+#include <stdio.h>
 
 int main()
 {
-	printf("Initializing glfw window manager\n");
-	if (initWindow() != CELL_OK) return CELL_FIRE;
+	glfwInit();
 
-	printf("Initializing vulkan\n");
-	if (initVulkan() != CELL_OK) return CELL_FIRE;
+	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+	GLFWwindow* window = glfwCreateWindow(800, 600, "Vulkan window", NULL, NULL);
 
-	printf("Begin main loop\n");
-	mainLoop();
+	uint32_t extensionCount = 0;
+	vkEnumerateInstanceExtensionProperties(NULL, &extensionCount, NULL);
 
-	printf("Cleanup and leave\n");
-	cleanup();
+	printf("%d extensiosn supported\n", extensionCount);
 
-	return CELL_OK;
+	glm::mat4 matrix;
+	glm::vec4 vec;
+	auto test = matrix * vec;
+
+	while(!glfwWindowShouldClose(window)) {
+		glfwPollEvents();
+	}
+
+	glfwDestroyWindow(window);
+
+	glfwTerminate();
+
+	return 0;
 }

@@ -2,9 +2,8 @@
 #define TRIANGLE_2_ELECTRIC_BOOGALOO_TYPES_H
 
 #include <stdint.h>
+#include <stdbool.h>
 
-#define true      ((bln) 1)
-#define false     ((bln) 0)
 #define CELL_FIRE (byt) (-1)
 #define CELL_OK   (byt) (0)
 

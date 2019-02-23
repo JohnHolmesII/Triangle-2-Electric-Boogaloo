@@ -2,7 +2,7 @@
 
 void warn(const char* message)
 {
-	printf("WARN: %s\n", message);
+	fprintf(stderr, "WARN: %s\n", message);
 }
 
 void err(const char* message)
