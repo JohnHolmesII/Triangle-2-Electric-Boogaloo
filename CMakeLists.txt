@@ -6,10 +6,7 @@ set(3RDPARTY ${PROJECT_SOURCE_DIR}/3rdparty)
 
 include_directories("${PROJECT_SOURCE_DIR}")
 
-add_subdirectory(3rdparty/glfw EXCLUDE_FROM_ALL)
-link_libraries(glfw)
-
-include_directories("${3RDPARTY}/glfw/include/GLFW/")
+include_directories("${3RDPARTY}/cglm/include/cglm/")
 
 find_package(Vulkan)
 if (VULKAN_FOUND)
