@@ -1,12 +1,15 @@
-cmake_minimum_required(VERSION 3.5.1)
+cmake_minimum_required(VERSION 3.0)
 project(T2EB C)
 
-set(CMAKE_C_FLAGS "-Wall -Wextra -std=c11")
+set(CMAKE_C_FLAGS "-Wall -std=c11")
 set(3RDPARTY ${PROJECT_SOURCE_DIR}/3rdparty)
 
-include_directories("${PROJECT_SOURCE_DIR}")
+add_subdirectory(${3RDPARTY}/glfw EXCLUDE_FROM_ALL)
 
-include_directories("${3RDPARTY}/cglm/include/cglm/")
+include_directories("${PROJECT_SOURCE_DIR}")
+include_directories("${3RDPARTY}/glfw/include/GLFW/")
+
+link_libraries(glfw)
 
 find_package(Vulkan)
 if (VULKAN_FOUND)

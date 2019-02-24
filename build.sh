@@ -8,10 +8,7 @@ die()
 
 config()
 {
-	
-	if [ "$MSYSTEM" = "MSYS" ]; then
-		CMAKEGENERATOR="MSYS Makefiles"
-	elif command -v ninja >/dev/null; then
+	if command -v ninja >/dev/null; then
 		CMAKEGENERATOR="Ninja"
 	else
 		CMAKEGENERATOR="Unix Makefiles"
