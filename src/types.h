@@ -7,7 +7,6 @@
 #define CELL_FIRE (byt) (-1)
 #define CELL_OK   (byt) (0)
 
-typedef uint8_t  bln; // A boolean
 typedef uint16_t u16;
 typedef uint32_t u32;
 typedef uint64_t u64;
