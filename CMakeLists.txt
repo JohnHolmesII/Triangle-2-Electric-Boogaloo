@@ -8,6 +8,7 @@ add_subdirectory(${3RDPARTY}/glfw EXCLUDE_FROM_ALL)
 
 include_directories("${PROJECT_SOURCE_DIR}")
 include_directories("${3RDPARTY}/glfw/include/GLFW/")
+include_directories("${3RDPARTY}/cglm/include/cglm/")
 
 link_libraries(glfw)
 

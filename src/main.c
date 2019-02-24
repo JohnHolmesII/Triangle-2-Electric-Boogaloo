@@ -1,27 +1,40 @@
-#define GLFW_INCLUDE_VULKAN
-
-#include <glfw3.h>
+#include <vulkan/vulkan.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include "types.h"
+
+
+byt initWindow()
+{
+	return CELL_OK;
+}
+
+byt initVulkan()
+{
+	return CELL_OK;
+}
+
+void mainLoop()
+{
+}
+
+void cleanup()
+{
+}
 
 int main()
 {
-	glfwInit();
+	printf("Initializing glfw window manager\n");
+	if (initWindow() != CELL_OK) return CELL_FIRE;
 
-	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-	GLFWwindow* window = glfwCreateWindow(800, 600, "Vulkan window", NULL, NULL);
+	printf("Initializing vulkan\n");
+	if (initVulkan() != CELL_OK) return CELL_FIRE;
 
-	uint32_t extensionCount = 0;
-	vkEnumerateInstanceExtensionProperties(NULL, &extensionCount, NULL);
+	printf("Begin main loop\n");
+	mainLoop();
 
-	printf("%d extensions supported\n", extensionCount);
+	printf("Cleanup and leave\n");
+	cleanup();
 
-	while(!glfwWindowShouldClose(window))
-	{
-		glfwPollEvents();
-	}
-
-	glfwDestroyWindow(window);
-	glfwTerminate();
-
-	return 0;
+	return CELL_OK;
 }
