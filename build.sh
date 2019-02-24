@@ -14,13 +14,7 @@ config()
 		CMAKEGENERATOR="Unix Makefiles"
 	fi
 
-	cmake -G "$CMAKEGENERATOR" \
-	    -DGLFW_BUILD_EXAMPLES=OFF \
-	    -DGLFW_BUILD_TESTS=OFF \
-	    -DGLFW_BUILD_DOCS=OFF \
-	    -DGLFW_INSTALL=OFF \
-	    -DGLFW_VULKAN_STATIC=OFF \
-	    ../
+	cmake -G "$CMAKEGENERATOR" ../
 
 	if [ $? != 0 ]; then
 		printf "[%d]" $?
