@@ -4,8 +4,7 @@ install:
 - sh: git submodule -q update --init --recursive
 init:
 - sh: |
-    sudo apt-get -qq -y update > /dev/null
-    sudo apt-get -qq -y upgrade > /dev/null
-    sudo apt-get -qq -y install libvulkan-dev libxi-dev libxrandr-dev libxinerama-dev libxcursor-dev libgl1-mesa-dev > /dev/null
+    sudo apt-get -qq update
+    sudo apt-get -qq install libvulkan-dev libxi-dev libxrandr-dev libxinerama-dev libxcursor-dev libgl1-mesa-dev
 build_script:
 - sh: sh ./build.sh
